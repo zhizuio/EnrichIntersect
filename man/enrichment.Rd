@@ -40,12 +40,19 @@ Plot enrichment map through a vector (matrix) of scores and a self-defined set t
 }
 \examples{
 # Data set 'cancers_drug_groups' is a list including a score dataframe with 147 drugs as rows and 19 cancer types as columns,
-# and a dataframe with 19 self-defined drug groups (1st column) of the 147 drugs (2nd column).
+# and a dataframe with 9 self-defined drug groups (1st column) of the 147 drugs (2nd column).
 data(cancers_drug_groups, package = "EnrichIntersect")
 
 x <- cancers_drug_groups$score
 custom.set <- cancers_drug_groups$custom.set
+enrich <- enrichment(x, custom.set)
 
+# Data set 'drug_genes' is a list including a score vector with 156 genes associated to one drug,
+# and a dataframe with 8 self-defined gene groups (1st column) of the 156 drugs (2nd column).
+data(drug_genes, package = "EnrichIntersect")
+
+x <- drug_genes$score
+custom.set <- drug_genes$custom.set
 enrich <- enrichment(x, custom.set)
 
 }

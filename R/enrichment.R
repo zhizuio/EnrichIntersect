@@ -22,23 +22,32 @@
 #' 
 #' @examples
 #' # Data set 'cancers_drug_groups' is a list including a score dataframe with 147 drugs as rows and 19 cancer types as columns,
-#' # and a dataframe with 19 self-defined drug groups (1st column) of the 147 drugs (2nd column).
+#' # and a dataframe with 9 self-defined drug groups (1st column) of the 147 drugs (2nd column).
 #' data(cancers_drug_groups, package = "EnrichIntersect")
 #' 
 #' x <- cancers_drug_groups$score
 #' custom.set <- cancers_drug_groups$custom.set
+#' enrich <- enrichment(x, custom.set)
 #' 
+#' # Data set 'drug_genes' is a list including a score vector with 156 genes associated to one drug,
+#' # and a dataframe with 8 self-defined gene groups (1st column) of the 156 drugs (2nd column).
+#' data(drug_genes, package = "EnrichIntersect")
+#' 
+#' x <- drug_genes$score
+#' custom.set <- drug_genes$custom.set
 #' enrich <- enrichment(x, custom.set)
 #' 
 #' @export
 enrichment <- function(x, custom.set, alpha=0, normalize=TRUE, permute.n=100, pvalue.cutoff=0.05, angle=45, ...){
   
   if(is.matrix(x) | is.data.frame(x)){
-    if(any( colSums(is.na(x))==ncol(x) ))
-      stop("The argument 'score' matrix has some columns with all missing values!")
+    if(any( colSums(is.na(x))==ncol(x) ) & ncol(x)>1)
+      stop("The argument 'x' matrix has some columns with all missing values!")
   }else{
     x <- as.matrix(x)
   }
+  if(is.null(colnames(x)))
+    colnames(x) <- "X"
   
   if(is.matrix(custom.set) | is.data.frame(custom.set)){
     if(dim(custom.set)[2] != 2)
@@ -185,9 +194,9 @@ enrichment <- function(x, custom.set, alpha=0, normalize=TRUE, permute.n=100, pv
     }
   }else{
     g <- ggplot(data = dat) +
-      geom_point(aes(x=x, y=y, color=border, fill=pvalue, size=ks), shape=21) +
+      geom_point(aes(x=x, y=y, fill=pvalue, size=ks), shape=21) +
       scale_fill_gradientn(name="p-value", na.value = "black",colours=c("blue", "white"), 
-                           limits=c(0,1), guide=guide_colorbar(barheight=3, barwidth=1)) +
+                           limits=c(round(min(dat$pvalue),2),1), guide=guide_colorbar(barheight=3, barwidth=1)) +
       scale_size(name = ES.name, range = c(1, 5), breaks = c(0,1,2,3), guide = guide_legend(keyheight=.8)) +
       theme(axis.text.x = element_text(size = 8, angle = 45, vjust = 1, hjust = 1)) + xlab("") + ylab("") 
   }
