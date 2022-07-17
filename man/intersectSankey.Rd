@@ -7,30 +7,24 @@
 intersectSankey(
   x,
   out.fig = NULL,
-  colors = NULL,
+  color = NULL,
   step.names = c("Levels", "Variables", "Tasks"),
-  fontSize = c(20, 10, 20),
-  nodePadding = 11,
-  nodeWidth = 5,
+  fontSize = c(20, 13, 20),
   ...
 )
 }
 \arguments{
 \item{x}{an array for constructing intersecting set}
 
-\item{out.fig}{print the figure into \code{"html"} or \code{"pdf"} file. Default is \code{NULL} with R graphics device}
+\item{out.fig}{print the figure into \code{"html"}, \code{"pdf"} or \code{"png"} file. Default is \code{NULL} with R graphics device}
 
-\item{colors}{a vector of colors corresponding to individual tasks}
+\item{color}{a vector of colors corresponding to individual tasks}
 
 \item{step.names}{names of the three dimensions of the array \code{x}, i.e. names of multiple levels, intermediate variables and tasks.
 Default is \code{c("Levels","Variables","Tasks")}. If \code{step.names=NULL}, it will not show the names}
 
 \item{fontSize}{a value or vector of three values. If it is one value, it is the font size for all labels. 
 But a vector of three values specifies the font size of the labels in the left, middle and right, respectively.  Default is \code{c(20,10,20)}}
-
-\item{nodePadding}{parameter from \code{sankeyNetwork()}. Default is \code{11}}
-
-\item{nodeWidth}{parameter from \code{sankeyNetwork()}. Default is \code{5}}
 
 \item{...}{graphics parameters to be passed to \code{sankeyNetwork()} from R package \code{networkD3}}
 }

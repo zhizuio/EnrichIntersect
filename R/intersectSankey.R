@@ -5,18 +5,16 @@
 #' @importFrom dplyr %>%
 #' @importFrom networkD3 sankeyNetwork
 #' @importFrom htmlwidgets JS onRender saveWidget 
-#' @importFrom webshot webshot
+#' @importFrom webshot2 webshot
 #' 
 #' @name intersectSankey
 #' @param x an array for constructing intersecting set 
-#' @param out.fig print the figure into \code{"html"} or \code{"pdf"} file. Default is \code{NULL} with R graphics device
-#' @param colors a vector of colors corresponding to individual tasks
+#' @param out.fig print the figure into \code{"html"}, \code{"pdf"} or \code{"png"} file. Default is \code{NULL} with R graphics device
+#' @param color a vector of colors corresponding to individual tasks
 #' @param step.names names of the three dimensions of the array \code{x}, i.e. names of multiple levels, intermediate variables and tasks.
 #' Default is \code{c("Levels","Variables","Tasks")}. If \code{step.names=NULL}, it will not show the names
 #' @param fontSize a value or vector of three values. If it is one value, it is the font size for all labels. 
 #' But a vector of three values specifies the font size of the labels in the left, middle and right, respectively.  Default is \code{c(20,10,20)}
-#' @param nodePadding parameter from \code{sankeyNetwork()}. Default is \code{11}
-#' @param nodeWidth parameter from \code{sankeyNetwork()}. Default is \code{5}
 #' @param ... graphics parameters to be passed to \code{sankeyNetwork()} from R package \code{networkD3}
 #' 
 #' @examples
@@ -27,7 +25,7 @@
 #' intersectSankey(cancers_genes_drugs, step.names=c("Cancers","Genes","Drugs"))
 #' 
 #' @export
-intersectSankey <- function(x, out.fig=NULL, colors=NULL, step.names=c("Levels","Variables","Tasks"), fontSize=c(20,10,20), nodePadding = 11, nodeWidth=5,...){
+intersectSankey <- function(x, out.fig=NULL, color=NULL, step.names=c("Levels","Variables","Tasks"), fontSize=c(20,13,20),...){
   
   # intermediate variables
   inter_var <- dimnames(x)[[1]]
@@ -36,7 +34,7 @@ intersectSankey <- function(x, out.fig=NULL, colors=NULL, step.names=c("Levels",
   # multiple response variables
   multitask <- dimnames(x)[[3]]
   
-  # extract nonzero x
+  # extract nonzero x. We might want to keep weights for edge width in the diagram in future, but it is not nice for too many variables
   x0 <- array(as.numeric(x!=0),dim=dim(x)) # inter_var, multilevel, multitask
   source <- target <- NULL
   for(i in 1:dim(x0)[2]){
@@ -84,10 +82,10 @@ intersectSankey <- function(x, out.fig=NULL, colors=NULL, step.names=c("Levels",
   nodes$targetM <- c(rep(FALSE,dim(x)[2]), rep(TRUE,dim(x)[1]), rep(FALSE,dim(x)[3]))
   
   # put colors for different tasks in a data.frame
-  if(is.null(colors)){
+  if(is.null(color)){
     mycolor <- c(hcl.colors(dim(x)[3],palette="Dynamic"), "white") #c("blue", "green", "white")
   }else{
-    if(length(colors) != dim(x)[3])
+    if(length(color) != dim(x)[3])
       stop("Please specify the argument 'colors' correctly!")
   }
   color_scale <- data.frame(
@@ -95,21 +93,17 @@ intersectSankey <- function(x, out.fig=NULL, colors=NULL, step.names=c("Levels",
     domain = c(paste("Task",1:dim(x)[3],sep=""), "my_unique_group"),
     stringsAsFactors = FALSE
   )
-  #my_color <- 'd3.scaleOrdinal() .domain(["RG-108", "JQ-1", "my_unique_group"]) .range(["blue", "green", "white"])'
-  
-  # if(length(fontSize) == 3){
-  #   fontsize1 <- paste(fontSize[1], "px", sep="")
-  #   fontsize2 <- fontSize[2] * 1.6
-  #   fontsize3 <- paste(fontSize[3], "px", sep="")
-  # }
   if( ! (length(fontSize) ==1 | length(fontSize) ==3) ){
     stop("Please specify the argument 'fontSize' correctly!")
   }
   if(length(fontSize) == 1){
-    #fontsize2 <- fontSize * 1.6
-    #fontsize1 <- fontsize3 <- paste(fontSize, "px", sep="")
     fontSize <- rep(fontSize, 3)
   }
+  
+  # check and set some default arguments passing to sankeyNetwork()
+  if(!hasArg(nodePadding)) nodePadding=11
+  if(!hasArg(nodeWidth)) nodeWidth=5
+  if(!hasArg(margin)) margin=list(right=180)
   
   # plot a Sankey diagram
   g <- sankeyNetwork(Links=links, Nodes=nodes, Source="IDsource", Target="IDtarget", Value="value", NodeID = "name",
@@ -118,8 +112,7 @@ intersectSankey <- function(x, out.fig=NULL, colors=NULL, step.names=c("Levels",
                        sprintf('d3.scaleOrdinal() .domain(%s) .range(%s)',
                                jsonlite::toJSON(color_scale$domain),
                                jsonlite::toJSON(color_scale$range)) ), 
-                     #colourScale = my_color,
-                     LinkGroup="group", NodeGroup = "group",...)#, iterations = 10)
+                     LinkGroup="group", NodeGroup = "group", margin = margin,...)
   # push left labels to the left of the nodes
   g$x$nodes$targetL <- nodes$targetL
   g$x$nodes$targetM <- nodes$targetM
@@ -183,6 +176,9 @@ intersectSankey <- function(x, out.fig=NULL, colors=NULL, step.names=c("Levels",
     }
     if(out.fig == "pdf"){
       webshot("sankey.html", "sankey.pdf")
+    }
+    if(out.fig == "png"){
+      webshot("sankey.html", "sankey.png")
     }
   }else{
     g

@@ -10,6 +10,11 @@ URL: https://github.com/zhizuio/EnrichIntersect
 Depends: R (>= 3.5)
 Encoding: UTF-8
 RoxygenNote: 7.1.2
-Imports: ggplot2, networkD3, dplyr, htmlwidgets, webshot, grDevices, graphics,
-        stats, data.table
+Imports: ggplot2, networkD3, dplyr, htmlwidgets, webshot2, grDevices,
+        graphics, stats, data.table
 NeedsCompilation: no
+Packaged: 2022-07-17 20:01:58 UTC; zhiz
+Author: Zhi Zhao [aut, cre],
+  Manuela Zucknick [aut],
+  Tero Aittokallio [ctb]
+Maintainer: Zhi Zhao <zhi.zhao@medisin.uio.no>
