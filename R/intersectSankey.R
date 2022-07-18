@@ -22,7 +22,7 @@
 #' 
 #' @examples
 #' # Data set 'cancers_genes_drugs' is an array with association scores between 56 genes (1st 
-#' # dimension), 2 cancer types (2nd dimension) and 2 cancer types (3rd dimension)
+#' # dimension), three cancer types (2nd dimension) and two drugs (3rd dimension)
 #' data(cancers_genes_drugs, package = "EnrichIntersect")
 #' 
 #' intersectSankey(cancers_genes_drugs, step.names=c("Cancers","Genes","Drugs"))
