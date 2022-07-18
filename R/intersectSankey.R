@@ -1,6 +1,6 @@
-#' @title Plot intersecting set
+#' @title Plot Sankey diagram for intersecting sets
 #' @description
-#' Plot intersecting set through an array
+#' Plot Sankey diagram for intersecting set through an array
 #' 
 #' @importFrom dplyr %>%
 #' @importFrom networkD3 sankeyNetwork
@@ -21,7 +21,7 @@
 #' @param ... graphics parameters to be passed to \code{sankeyNetwork()} from R package \code{networkD3}
 #' 
 #' @examples
-#' # Data set 'cancers_genes_drugs' is an array with association scores between 55 genes (1st 
+#' # Data set 'cancers_genes_drugs' is an array with association scores between 56 genes (1st 
 #' # dimension), 2 cancer types (2nd dimension) and 2 cancer types (3rd dimension)
 #' data(cancers_genes_drugs, package = "EnrichIntersect")
 #' 
