@@ -128,6 +128,7 @@ intersectSankey <- function(x, out.fig=NULL, color=NULL, step.names=c("Levels","
   }else{
     df$step <- c(step.names, rep(NA,length(fontSize)-3))
     df$stepSize <- c(max(fontSize), rep(NA,length(fontSize)-1))
+    df$stepAlign <- c(-11, 0, 5)
   }
   
   g <- onRender(g, '
@@ -138,7 +139,7 @@ intersectSankey <- function(x, out.fig=NULL, color=NULL, step.names=c("Levels","
     d3.select(el)
       .selectAll(".node text")
       .filter(d => d.targetL)
-      .attr("x", -6)
+      .attr("x", -10 + x.options.nodeWidth) // or use -6
       .attr("text-anchor", "end")
       .style("font-size", data.fontsize[0]);
       
@@ -160,8 +161,8 @@ intersectSankey <- function(x, out.fig=NULL, color=NULL, step.names=c("Levels","
     cols_x.forEach((d, i) => {
       d3.select(el).select("svg")
         .append("text")
-        .attr("x", d)
-        .attr("y", 12)
+        .attr("x", d+data.stepAlign[i]*x.options.nodeWidth)
+        .attr("y", 0)
         .attr("font-weight", "bold")
         .text(data.step[i])
         .style("font-size", data.stepSize[0]);

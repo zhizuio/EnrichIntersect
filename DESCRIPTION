@@ -13,7 +13,7 @@ RoxygenNote: 7.1.2
 Imports: ggplot2, networkD3, dplyr, htmlwidgets, webshot2, grDevices,
         graphics, stats, data.table
 NeedsCompilation: no
-Packaged: 2022-07-17 20:01:58 UTC; zhiz
+Packaged: 2022-07-18 09:36:26 UTC; zhiz
 Author: Zhi Zhao [aut, cre],
   Manuela Zucknick [aut],
   Tero Aittokallio [ctb]
