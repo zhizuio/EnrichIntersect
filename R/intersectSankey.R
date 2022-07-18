@@ -6,6 +6,9 @@
 #' @importFrom networkD3 sankeyNetwork
 #' @importFrom htmlwidgets JS onRender saveWidget 
 #' @importFrom webshot2 webshot
+#' @importFrom methods hasArg
+#' @importFrom grDevices hcl.colors
+#' @importFrom jsonlite toJSON
 #' 
 #' @name intersectSankey
 #' @param x an array for constructing intersecting set 
@@ -18,8 +21,8 @@
 #' @param ... graphics parameters to be passed to \code{sankeyNetwork()} from R package \code{networkD3}
 #' 
 #' @examples
-#' # Data set 'cancers_genes_drugs' is an array with association scores between 55 genes (1st dimension), 
-#' # 2 cancer types (2nd dimension) and 2 cancer types (3rd dimension)
+#' # Data set 'cancers_genes_drugs' is an array with association scores between 55 genes (1st 
+#' # dimension), 2 cancer types (2nd dimension) and 2 cancer types (3rd dimension)
 #' data(cancers_genes_drugs, package = "EnrichIntersect")
 #' 
 #' intersectSankey(cancers_genes_drugs, step.names=c("Cancers","Genes","Drugs"))
@@ -110,8 +113,8 @@ intersectSankey <- function(x, out.fig=NULL, color=NULL, step.names=c("Levels","
                      sinksRight=FALSE, fontSize=fontSize[1], nodePadding=nodePadding, nodeWidth=nodeWidth, 
                      colourScale = JS(
                        sprintf('d3.scaleOrdinal() .domain(%s) .range(%s)',
-                               jsonlite::toJSON(color_scale$domain),
-                               jsonlite::toJSON(color_scale$range)) ), 
+                               toJSON(color_scale$domain),
+                               toJSON(color_scale$range)) ), 
                      LinkGroup="group", NodeGroup = "group", margin = margin,...)
   # push left labels to the left of the nodes
   g$x$nodes$targetL <- nodes$targetL
@@ -162,7 +165,7 @@ intersectSankey <- function(x, out.fig=NULL, color=NULL, step.names=c("Levels","
       d3.select(el).select("svg")
         .append("text")
         .attr("x", d+data.stepAlign[i]*x.options.nodeWidth)
-        .attr("y", 0)
+        .attr("y", 3)
         .attr("font-weight", "bold")
         .text(data.step[i])
         .style("font-size", data.stepSize[0]);
@@ -172,14 +175,14 @@ intersectSankey <- function(x, out.fig=NULL, color=NULL, step.names=c("Levels","
   
   # output figure
   if(!is.null(out.fig)){
-    if(out.fig %in% c("html", "pdf")){
-      saveWidget(g, file="sankey.html")
+    if(out.fig %in% c("html", "pdf", "png")){
+      saveWidget(widget=g, file="sankey.html")
     }
     if(out.fig == "pdf"){
-      webshot("sankey.html", "sankey.pdf")
+      webshot(url="sankey.html", file="sankey.pdf")
     }
     if(out.fig == "png"){
-      webshot("sankey.html", "sankey.png")
+      webshot(url="sankey.html", file="sankey.png")
     }
   }else{
     g

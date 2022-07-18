@@ -21,8 +21,9 @@
 #' @references Reimand, J., Isserlin, R., Voisin, V., et al (2019). \emph{Pathway enrichment analysis and visualization of omics data using g:profiler, gsea, cytoscape and enrichmentmap}. Nature protocols, 14:482–517.
 #' 
 #' @examples
-#' # Data set 'cancers_drug_groups' is a list including a score dataframe with 147 drugs as rows and 19 cancer types as columns,
-#' # and a dataframe with 9 self-defined drug groups (1st column) of the 147 drugs (2nd column).
+#' # Data set 'cancers_drug_groups' is a list including a score dataframe with 147 drugs as rows 
+#' # and 19 cancer types as columns, and a dataframe with 9 self-defined drug groups (1st column)
+#' # of the 147 drugs (2nd column).
 #' data(cancers_drug_groups, package = "EnrichIntersect")
 #' 
 #' x <- cancers_drug_groups$score
@@ -31,11 +32,11 @@
 #' 
 #' # Data set 'drug_genes' is a list including a score vector with 156 genes associated to one drug,
 #' # and a dataframe with 8 self-defined gene groups (1st column) of the 156 drugs (2nd column).
-#' data(drug_genes, package = "EnrichIntersect")
+#' #data(drug_genes, package = "EnrichIntersect")
 #' 
-#' x <- drug_genes$score
-#' custom.set <- drug_genes$custom.set
-#' enrich <- enrichment(x, custom.set)
+#' #x <- drug_genes$score
+#' #custom.set <- drug_genes$custom.set
+#' #enrich <- enrichment(x, custom.set)
 #' 
 #' @export
 enrichment <- function(x, custom.set, alpha=0, normalize=TRUE, permute.n=100, pvalue.cutoff=0.05, angle=45, ...){
@@ -166,6 +167,9 @@ enrichment <- function(x, custom.set, alpha=0, normalize=TRUE, permute.n=100, pv
   dat$ks <- dat$ks - (ks.min - 0.001)
   dat$ks[which.max(dat$ks)] <- round(sort(dat$ks,decreasing = T)[2]+0.5)
   dat$border <- rep("red", nrow(dat)); dat$border[dat$pvalue >= pvalue.cutoff] <- "gray"
+  
+  #globalVariables(c("y", "border", "ks"))
+  y <- border <- ks <- NULL
   
   if(normalize){
     ES.name <- "Normalized\nEnrichment\nScore"

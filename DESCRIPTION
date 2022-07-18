@@ -1,20 +1,15 @@
 Package: EnrichIntersect
 Type: Package
-Title: Enrichment analysis and intersecting Sankey graph
+Title: Enrichment analysis and intersecting Sankey diagram
 Version: 0.1
-Date: 2022-07-16
+Date: 2022-07-18
 Authors@R: c(person("Zhi", "Zhao", email = "zhi.zhao@medisin.uio.no", role = c("aut","cre")), person("Manuela", "Zucknick", email = "manuela.zucknick@medisin.uio.no", role = c("aut")), person("Tero", "Aittokallio", email = "t.a.aittokallio@medisin.uio.no", role = c("ctb")))
 Description: Mix lasso with structured penalty, varying coefficients and random effects.
 License: MIT + file LICENSE
 URL: https://github.com/zhizuio/EnrichIntersect
-Depends: R (>= 3.5)
+Depends: R (>= 4.0)
 Encoding: UTF-8
 RoxygenNote: 7.1.2
-Imports: ggplot2, networkD3, dplyr, htmlwidgets, webshot2, grDevices,
-        graphics, stats, data.table
+Imports: ggplot2, dplyr, networkD3, jsonlite, htmlwidgets, webshot2, grDevices, methods
+LazyData: true
 NeedsCompilation: no
-Packaged: 2022-07-18 09:36:26 UTC; zhiz
-Author: Zhi Zhao [aut, cre],
-  Manuela Zucknick [aut],
-  Tero Aittokallio [ctb]
-Maintainer: Zhi Zhao <zhi.zhao@medisin.uio.no>

@@ -32,8 +32,8 @@ But a vector of three values specifies the font size of the labels in the left, 
 Plot intersecting set through an array
 }
 \examples{
-# Data set 'cancers_genes_drugs' is an array with association scores between 55 genes (1st dimension), 
-# 2 cancer types (2nd dimension) and 2 cancer types (3rd dimension)
+# Data set 'cancers_genes_drugs' is an array with association scores between 55 genes (1st 
+# dimension), 2 cancer types (2nd dimension) and 2 cancer types (3rd dimension)
 data(cancers_genes_drugs, package = "EnrichIntersect")
 
 intersectSankey(cancers_genes_drugs, step.names=c("Cancers","Genes","Drugs"))
