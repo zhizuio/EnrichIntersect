@@ -28,15 +28,7 @@
 #' 
 #' x <- cancers_drug_groups$score
 #' custom.set <- cancers_drug_groups$custom.set
-#' enrich <- enrichment(x, custom.set)
-#' 
-#' # Data set 'drug_genes' is a list including a score vector with 156 genes associated to one drug,
-#' # and a dataframe with 8 self-defined gene groups (1st column) of the 156 drugs (2nd column).
-#' #data(drug_genes, package = "EnrichIntersect")
-#' 
-#' #x <- drug_genes$score
-#' #custom.set <- drug_genes$custom.set
-#' #enrich <- enrichment(x, custom.set)
+#' enrich <- enrichment(x, custom.set, permute.n=10)
 #' 
 #' @export
 enrichment <- function(x, custom.set, alpha=0, normalize=TRUE, permute.n=100, pvalue.cutoff=0.05, angle=45, ...){

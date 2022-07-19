@@ -4,7 +4,7 @@ Title: Enrichment analysis and intersecting Sankey diagram
 Version: 0.1
 Date: 2022-07-18
 Authors@R: c(person("Zhi", "Zhao", email = "zhi.zhao@medisin.uio.no", role = c("aut","cre")), person("Manuela", "Zucknick", email = "manuela.zucknick@medisin.uio.no", role = c("aut")), person("Tero", "Aittokallio", email = "t.a.aittokallio@medisin.uio.no", role = c("ctb")))
-Description: Mix lasso with structured penalty, varying coefficients and random effects.
+Description: The EnrichIntersect R package provides a flexible tool for enrichment analysis based on user-defined sets. It allows users to perform over-representation analysis of the custom sets among any specified ranked feature list, hence making enrichment analysis applicable to various types of data from different scientific fields. EnrichIntersect also enables an interactive means to visualize identified associations based on, for example, the mix-lasso model (Zhao et al. (2022) <doi:10.1016/j.isci.2022.104767>) or similar methods.
 License: MIT + file LICENSE
 URL: https://github.com/zhizuio/EnrichIntersect
 Depends: R (>= 4.0)
