@@ -27,7 +27,7 @@ enrich <- enrichment(x, custom.set)
  |==================================================| 100%
 ```
 
-![](https://github.com/zhizuio/EnrichIntersect/blob/main/README_plot_enrich.pdf)
+![](https://github.com/zhizuio/EnrichIntersect/blob/main/README_plot_enrich.png)
 
 ### Plot Sankey diagram for intersecting set through an array
 
@@ -38,7 +38,7 @@ data(cancers_genes_drugs, package = "EnrichIntersect")
 intersectSankey(cancers_genes_drugs, step.names=c("Cancers","Genes","Drugs"))
 ```
 
-![](https://github.com/zhizuio/EnrichIntersect/blob/main/README_plot_sankey.pdf)
+![](https://github.com/zhizuio/EnrichIntersect/blob/main/README_plot_sankey.png)
 
 
 ## Citation
