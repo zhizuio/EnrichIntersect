@@ -20,6 +20,8 @@
 #' But a vector of three values specifies the font size of the labels in the left, middle and right, respectively.  Default is \code{c(20,10,20)}
 #' @param ... graphics parameters to be passed to \code{sankeyNetwork()} from R package \code{networkD3}
 #' 
+#' @return An object of a D3 JavaScript intersecting Sankey diagram for visualising associations based on the input array.
+#' 
 #' @examples
 #' # Data set 'cancers_genes_drugs' is an array with association scores between 56 genes (1st 
 #' # dimension), three cancer types (2nd dimension) and two drugs (3rd dimension)
@@ -48,19 +50,7 @@ intersectSankey <- function(x, out.fig=NULL, color=NULL, step.names=c("Levels","
     source <- c( source, rep(inter_var[i],sum(colSums(x0[i,,])!=0)) )
     target <- c( target, multitask[colSums(x0[i,,])!=0] )
   }
-  # ## add "+/-" effect signs
-  # for(i in 1:dim(beta.ij.sel)[1]){
-  #   sign.beta <- t(beta.ij.sel[i,,])
-  #   sign.beta <- sign.beta[sign.beta!=0]
-  #   sign.beta <- ifelse(sign.beta>0,"+","\u2212")
-  #   if(length(sign.beta)==1){
-  #     target[target==inter_var[i]] <- paste(inter_var[i], "(",sign.beta,")", sep="")
-  #     source[source==inter_var[i]] <- paste(inter_var[i], "(",sign.beta,")", sep="")
-  #   }else{
-  #     target[target==inter_var[i]] <- paste(inter_var[i], "(",paste(sign.beta,collapse ="/"),")", sep="")
-  #     source[source==inter_var[i]] <- paste(inter_var[i], "(",paste(sign.beta,collapse ="/"),")", sep="")
-  #   }
-  # }
+  
   links <- data.frame(source=source, target=target)
   links$value <- rep(.1, nrow(links))
   

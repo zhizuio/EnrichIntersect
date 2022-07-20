@@ -33,7 +33,12 @@ enrichment(
 \item{...}{other arguments}
 }
 \value{
-Return a list including a matrix of (normalized) enrichment score, a matrix of corresponding p-value and ggplot object
+Return a list including a matrix of (normalized) enrichment score, a matrix of corresponding p-value and ggplot object:
+\itemize{
+\item S - a matrix of calculated enrichment scores.
+\item pvalue - a matrix of p-values using permuation test for the calculated enrichment scores.
+\item g - a ggplot object for visualising the results of an enrichment analysis.
+}
 }
 \description{
 Plot enrichment map through a vector (matrix) of scores and a self-defined set that summarizes a few groups of the names (rownames) of the vector (matrix)
@@ -46,7 +51,7 @@ data(cancers_drug_groups, package = "EnrichIntersect")
 
 x <- cancers_drug_groups$score
 custom.set <- cancers_drug_groups$custom.set
-enrich <- enrichment(x, custom.set, permute.n=10)
+enrich <- enrichment(x, custom.set, permute.n=5)
 
 }
 \references{

@@ -16,7 +16,12 @@
 #' @param angle angle of rotating x-axix labels. Default is 45
 #' @param ... other arguments
 #' 
-#' @return Return a list including a matrix of (normalized) enrichment score, a matrix of corresponding p-value and ggplot object
+#' @return Return a list including a matrix of (normalized) enrichment score, a matrix of corresponding p-value and ggplot object:
+#' \itemize{
+#' \item S - a matrix of calculated enrichment scores.
+#' \item pvalue - a matrix of p-values using permuation test for the calculated enrichment scores.
+#' \item g - a ggplot object for visualising the results of an enrichment analysis.
+#' }
 #' 
 #' @references Reimand, J., Isserlin, R., Voisin, V., et al (2019). \emph{Pathway enrichment analysis and visualization of omics data using g:profiler, gsea, cytoscape and enrichmentmap}. Nature protocols, 14:482–517.
 #' 
@@ -28,7 +33,7 @@
 #' 
 #' x <- cancers_drug_groups$score
 #' custom.set <- cancers_drug_groups$custom.set
-#' enrich <- enrichment(x, custom.set, permute.n=10)
+#' enrich <- enrichment(x, custom.set, permute.n=5)
 #' 
 #' @export
 enrichment <- function(x, custom.set, alpha=0, normalize=TRUE, permute.n=100, pvalue.cutoff=0.05, angle=45, ...){
@@ -62,11 +67,7 @@ enrichment <- function(x, custom.set, alpha=0, normalize=TRUE, permute.n=100, pv
   pvalue <- S_norm <- S
   
   # Initializes the progress bar
-  pb <- txtProgressBar(min = 0,      # Minimum value of the progress bar
-                       max = ncol(x), # Maximum value of the progress bar
-                       style = 3,    # Progress bar style (also available style = 1 and style = 2)
-                       width = 50,   # Progress bar width. Defaults to getOption("width")
-                       char = "=")   # Character used to create the bar
+  pb <- txtProgressBar(min=0, max=ncol(x), style=3, width=50,  char="=")
   
   for(i in 1:ncol(x)){
     ## define costom sets 'myList'

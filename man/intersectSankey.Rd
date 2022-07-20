@@ -28,6 +28,9 @@ But a vector of three values specifies the font size of the labels in the left, 
 
 \item{...}{graphics parameters to be passed to \code{sankeyNetwork()} from R package \code{networkD3}}
 }
+\value{
+An object of a D3 JavaScript intersecting Sankey diagram for visualising associations based on the input array.
+}
 \description{
 Plot Sankey diagram for intersecting set through an array
 }
