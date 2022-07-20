@@ -1,6 +1,6 @@
 # EnrichIntersect
 
-The EnrichIntersect R package provides a flexible tool for enrichment analysis based on user-defined sets. It allows users to perform over-representation analysis of the custom sets among any specified ranked feature list, hence making enrichment analysis applicable to various types of data from different scientific fields. EnrichIntersect also enables an interactive means to visualize identified associations based on, for example, the mix-lasso model ([Zhao et al. (2022)](https://doi.org/10.1016/j.isci.2022.104767)) or similar methods.
+The `EnrichIntersect R package provides a flexible tool for enrichment analysis based on user-defined sets. It allows users to perform over-representation analysis of the custom sets among any specified ranked feature list, hence making enrichment analysis applicable to various types of data from different scientific fields. EnrichIntersect also enables an interactive means to visualize identified associations based on, for example, the mix-lasso model ([Zhao et al. (2022)](https://doi.org/10.1016/j.isci.2022.104767)) or similar methods.
 
 ## Installation
 
