@@ -1,3 +1,5 @@
+[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/EnrichIntersect)](https://cran.r-project.org/package=EnrichIntersect)
+
 # EnrichIntersect
 
 The `EnrichIntersect` R package provides a flexible tool for enrichment analysis based on user-defined sets. It allows users to perform over-representation analysis of the custom sets among any specified ranked feature list, hence making enrichment analysis applicable to various types of data from different scientific fields. EnrichIntersect also enables an interactive means to visualize identified associations based on, for example, the mix-lasso model ([Zhao et al., 2022](https://doi.org/10.1016/j.isci.2022.104767)) or similar methods.
@@ -45,4 +47,4 @@ intersectSankey(cancers_genes_drugs, step.names=c("Cancers","Genes","Drugs"))
 
 Zhi Zhao, Shixiong Wang, Manuela Zucknick, Tero Aittokallio (2022). Tissue-specific identification of multi-omics features for pan-cancer drug response prediction. iScience, Available online, DOI: [https:// doi.org/10.1016/j.isci.2022.104767](https://doi.org/10.1016/j.isci.2022.104767).
 
-Zhi Zhao, Manuela Zucknick, Tero Aittokallio (2022+). EnrichIntersect: an R package for enrichment analysis of custom sets and interactive visualization of intersecting sets. Manuscript.
+Zhi Zhao, Manuela Zucknick, Tero Aittokallio (2022+). EnrichIntersect: an R package for enrichment analysis of custom sets and interactive visualization of intersecting sets. Submitted.
