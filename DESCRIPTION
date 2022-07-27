@@ -1,14 +1,23 @@
 Package: EnrichIntersect
 Type: Package
 Title: Enrichment Analysis and Intersecting Sankey Diagram
-Version: 0.1
-Date: 2022-07-20
+Version: 0.2
+Date: 2022-07-27
 Authors@R: c(person("Zhi", "Zhao", email = "zhi.zhao@medisin.uio.no", role = c("aut","cre")), person("Manuela", "Zucknick", email = "manuela.zucknick@medisin.uio.no", role = c("aut")), person("Tero", "Aittokallio", email = "t.a.aittokallio@medisin.uio.no", role = c("ctb")))
-Description: A flexible tool for enrichment analysis based on user-defined sets is provided. It allows users to perform over-representation analysis of the custom sets among any specified ranked feature list, hence making enrichment analysis applicable to various types of data from different scientific fields. 'EnrichIntersect' also enables an interactive means to visualize identified associations based on, for example, the mix-lasso model (Zhao et al. (2022) <doi:10.1016/j.isci.2022.104767>) or similar methods.
+Description: A flexible tool for enrichment analysis based on user-defined sets. It allows users to perform over-representation analysis of the custom sets among any specified ranked feature list, hence making enrichment analysis applicable to various types of data from different scientific fields. 'EnrichIntersect' also enables an interactive means to visualize identified associations based on, for example, the mix-lasso model (Zhao et al. (2022) <doi:10.1016/j.isci.2022.104767>) or similar methods.
+URL: https://github.com/zhizuio/EnrichIntersect
 License: MIT + file LICENSE
 Depends: R (>= 4.0)
 Encoding: UTF-8
-RoxygenNote: 7.1.2
-Imports: ggplot2, dplyr, networkD3, jsonlite, htmlwidgets, webshot2, grDevices, methods
+RoxygenNote: 7.2.1
+Imports: ggplot2, dplyr, networkD3, jsonlite, htmlwidgets, webshot2,
+        grDevices, methods
+Suggests: R.rsp, knitr
 LazyData: true
+VignetteBuilder: R.rsp, knitr
 NeedsCompilation: no
+Packaged: 2022-07-27 12:20:05 UTC; zhiz
+Author: Zhi Zhao [aut, cre],
+  Manuela Zucknick [aut],
+  Tero Aittokallio [ctb]
+Maintainer: Zhi Zhao <zhi.zhao@medisin.uio.no>

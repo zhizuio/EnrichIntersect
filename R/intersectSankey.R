@@ -2,14 +2,6 @@
 #' @description
 #' Plot Sankey diagram for intersecting set through an array
 #' 
-#' @importFrom dplyr %>%
-#' @importFrom networkD3 sankeyNetwork
-#' @importFrom htmlwidgets JS onRender saveWidget 
-#' @importFrom webshot2 webshot
-#' @importFrom methods hasArg
-#' @importFrom grDevices hcl.colors
-#' @importFrom jsonlite toJSON
-#' 
 #' @name intersectSankey
 #' @param x an array for constructing intersecting set 
 #' @param out.fig print the figure into \code{"html"}, \code{"pdf"} or \code{"png"} file. Default is \code{NULL} with R graphics device
@@ -29,6 +21,14 @@
 #' 
 #' intersectSankey(cancers_genes_drugs, step.names=c("Cancers","Genes","Drugs"))
 #' 
+#' 
+#' @importFrom dplyr %>%
+#' @importFrom networkD3 sankeyNetwork JS
+#' @importFrom htmlwidgets onRender saveWidget 
+#' @importFrom webshot2 webshot
+#' @importFrom methods hasArg
+#' @importFrom grDevices hcl.colors
+#' @importFrom jsonlite toJSON
 #' @export
 intersectSankey <- function(x, out.fig=NULL, color=NULL, step.names=c("Levels","Variables","Tasks"), fontSize=c(20,13,20),...){
   

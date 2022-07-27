@@ -21,4 +21,7 @@ Data set 'cancers_drug_groups' is a list including a score dataframe with 147 dr
 data(cancers_drug_groups, package = "EnrichIntersect")
 
 }
+\references{
+Zhao Z, Wang S, Zucknick M and Aittokallio T (2019). \emph{Tissue-specific identification of multi-omics features for pan-cancer drug response prediction}. iScience, doi:10.1016/j.isci.2022.104767.
+}
 \keyword{datasets}

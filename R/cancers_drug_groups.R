@@ -5,6 +5,8 @@
 #'
 #' @return No return value.
 #'
+#' @references Zhao Z, Wang S, Zucknick M and Aittokallio T (2019). \emph{Tissue-specific identification of multi-omics features for pan-cancer drug response prediction}. iScience, doi:10.1016/j.isci.2022.104767.
+#' 
 #' @examples
 #' # Load data
 #' data(cancers_drug_groups, package = "EnrichIntersect")

@@ -2,10 +2,6 @@
 #' @description
 #' Plot enrichment map through a vector (matrix) of scores and a self-defined set that summarizes a few groups of the names (rownames) of the vector (matrix)
 #' 
-#' @importFrom ggplot2 ggplot aes geom_point scale_color_manual scale_fill_gradientn scale_size guides theme 
-#' @importFrom ggplot2 guide_colorbar guide_legend element_text xlab ylab
-#' @importFrom utils txtProgressBar setTxtProgressBar
-#' 
 #' @name enrichment
 #' @param x a vector (matrix) of scores to be enriched
 #' @param custom.set a self-defined set that summarizes a few groups of the names (rownames) of \code{x}
@@ -23,7 +19,7 @@
 #' \item g - a ggplot object for visualising the results of an enrichment analysis.
 #' }
 #' 
-#' @references Reimand, J., Isserlin, R., Voisin, V., et al (2019). \emph{Pathway enrichment analysis and visualization of omics data using g:profiler, gsea, cytoscape and enrichmentmap}. Nature protocols, 14:482–517.
+#' @references Reimand J, Isserlin R, Voisin V, et al (2019). \emph{Pathway enrichment analysis and visualization of omics data using g:profiler, gsea, cytoscape and enrichmentmap}. Nature protocols, 14:482–517.
 #' 
 #' @examples
 #' # Data set 'cancers_drug_groups' is a list including a score dataframe with 147 drugs as rows 
@@ -35,6 +31,9 @@
 #' custom.set <- cancers_drug_groups$custom.set
 #' enrich <- enrichment(x, custom.set, permute.n=5)
 #' 
+#' 
+#' @import ggplot2
+#' @importFrom utils txtProgressBar setTxtProgressBar
 #' @export
 enrichment <- function(x, custom.set, alpha=0, normalize=TRUE, permute.n=100, pvalue.cutoff=0.05, angle=45, ...){
   

@@ -21,4 +21,7 @@ Data set 'cancers_genes_drugs' is an array with association scores between 56 ge
 data(cancers_genes_drugs, package = "EnrichIntersect")
 
 }
+\references{
+Zhao Z, Wang S, Zucknick M and Aittokallio T (2019). \emph{Tissue-specific identification of multi-omics features for pan-cancer drug response prediction}. iScience, doi:10.1016/j.isci.2022.104767.
+}
 \keyword{datasets}
