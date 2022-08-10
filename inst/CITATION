@@ -14,9 +14,9 @@ bibentry(bibtype = "Article",
                           email = "t.a.aittokallio@medisin.uio.no")),
   journal      = "iScience",
   year         = "2022",
-  volume       = "",
-  number       = "",
-  pages        = "",
+  volume       = "25",
+  number       = "8",
+  pages        = "104767",
   doi          = "10.1016/j.isci.2022.104767",
   header       = "To cite EnrichIntersect in publications use:"
 )
