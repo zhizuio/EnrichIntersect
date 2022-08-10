@@ -8,19 +8,16 @@ custom sets among any specified ranked feature list, hence making
 enrichment analysis applicable to various types of data from different
 scientific fields. EnrichIntersect also enables an interactive means to
 visualize identified associations based on, for example, the mix-lasso
-model ([Zhao et al. (2022)](https://doi.org/10.1016/j.isci.2022.104767))
+model ([Zhao et al. (2022)](https://doi.org/10.1016/j.isci.2022.104767))
 or similar methods.
 
 ## Citation
 
 > Zhi Zhao, Shixiong Wang, Manuela Zucknick, Tero Aittokallio (2022).
 > Tissue-specific identification of multi-omics features for pan-cancer
-> drug response prediction. iScience, Available online, DOI:
+> drug response prediction. iScience, 25(8): 104767. DOI:
 > <https://doi.org/10.1016/j.isci.2022.104767>.
 
-> Zhi Zhao, Manuela Zucknick, Tero Aittokallio (2022+). EnrichIntersect:
-> an R package for enrichment analysis of custom sets and interactive
-> visualization of intersecting sets. Submitted
 
 ## Installation
 
@@ -28,7 +25,7 @@ Install the latest released version from CRAN
 
 ``` r
 install.packages("EnrichIntersect")
-library(EnrichIntersect)
+library("EnrichIntersect")
 ```
 
 Install the latest development version from GitHub
@@ -36,7 +33,7 @@ Install the latest development version from GitHub
 ``` r
 library("devtools")
 devtools::install_github("zhizuio/EnrichIntersect")
-library(EnrichIntersect)
+library("EnrichIntersect")
 ```
 
 ## Examples
@@ -51,7 +48,8 @@ column).
 ``` r
 x <- cancers_drug_groups$score
 custom.set <- cancers_drug_groups$custom.set
-enrich <- enrichment(x, custom.set, permute.n=5)
+set.seed(123)
+enrich <- enrichment(x, custom.set, permute.n = 5)
 ```
 
 ![](https://github.com/zhizuio/EnrichIntersect/blob/main/README_plot_enrich.png)<!-- -->
@@ -64,7 +62,7 @@ two drugs (3rd dimension).
 
 ``` r
 data(cancers_genes_drugs, package = "EnrichIntersect")
-intersectSankey(cancers_genes_drugs, step.names=c("Cancers","Genes","Drugs"))
+intersectSankey(cancers_genes_drugs, step.names = c("Cancers","Genes","Drugs"))
 ```
 
 ![](https://github.com/zhizuio/EnrichIntersect/blob/main/README_plot_sankey.png)<!-- -->
