@@ -3,13 +3,19 @@
 #' Plot enrichment map through a vector (matrix) of scores and a self-defined set that summarizes a few groups of the names (rownames) of the vector (matrix)
 #' 
 #' @name enrichment
+#' 
+#' @import ggplot2
+#' @importFrom utils txtProgressBar setTxtProgressBar
+#' @importFrom stats p.adjust 
+#' 
 #' @param x a vector (matrix) of scores to be enriched
 #' @param custom.set a self-defined set that summarizes a few groups of the names (rownames) of \code{x}
 #' @param alpha exponent weight of the score of ordered features. Default is \code{0} for calculating enrichment score via classic Kolmogorov-Smirnov statistic
 #' @param normalize logic value to determine if normalizing enrichment scores, accounting for custom set size. Default is \code{TRUE}
 #' @param permute.n number of custom-set permutations for significance testing. Default is 100
-#' @param pvalue.cutoff a cutoff of p-vlaue to mark significantly enriched classes. Default is 0.05
-#' @param angle angle of rotating x-axix labels. Default is 45
+#' @param padj.method correction method, one of \code{"holm"}, \code{"hochberg"}, \code{"hommel"}, \code{"bonferroni"}, \code{"BH"}, \code{"BY"}, \code{"fdr"}, \code{"none"}. Default is \code{"none"}
+#' @param pvalue.cutoff a cutoff for both unadjusted and adjusted p-value to mark significantly enriched classes. Default is 0.05
+#' @param angle angle of rotating x-axis labels. Default is 45
 #' @param ... other arguments
 #' 
 #' @return Return a list including a matrix of (normalized) enrichment score, a matrix of corresponding p-value and ggplot object:
@@ -32,11 +38,8 @@
 #' set.seed(123)
 #' enrich <- enrichment(x, custom.set, permute.n=5)
 #' 
-#' 
-#' @import ggplot2
-#' @importFrom utils txtProgressBar setTxtProgressBar
 #' @export
-enrichment <- function(x, custom.set, alpha=0, normalize=TRUE, permute.n=100, pvalue.cutoff=0.05, angle=45, ...){
+enrichment <- function(x, custom.set, alpha=0, normalize=TRUE, permute.n=100, padj.method="none", pvalue.cutoff=0.05, angle=45, ...){
   
   if(is.matrix(x) | is.data.frame(x)){
     if(any( colSums(is.na(x))==ncol(x) ) & ncol(x)>1)
@@ -146,6 +149,9 @@ enrichment <- function(x, custom.set, alpha=0, normalize=TRUE, permute.n=100, pv
   
   pvalue[is.na(S)] <- NA
   pvalue <- t(pvalue)
+  if(! padj.method == "none"){
+    pvalue <- p.adjust(pvalue, method=padj.method)
+  }
   S <- t(S)
   
   # define a dataframe

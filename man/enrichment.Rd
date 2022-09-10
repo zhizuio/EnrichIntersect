@@ -10,6 +10,7 @@ enrichment(
   alpha = 0,
   normalize = TRUE,
   permute.n = 100,
+  padj.method = "none",
   pvalue.cutoff = 0.05,
   angle = 45,
   ...
@@ -26,9 +27,11 @@ enrichment(
 
 \item{permute.n}{number of custom-set permutations for significance testing. Default is 100}
 
-\item{pvalue.cutoff}{a cutoff of p-vlaue to mark significantly enriched classes. Default is 0.05}
+\item{padj.method}{correction method, one of \code{"holm"}, \code{"hochberg"}, \code{"hommel"}, \code{"bonferroni"}, \code{"BH"}, \code{"BY"}, \code{"fdr"}, \code{"none"}. Default is \code{"none"}}
 
-\item{angle}{angle of rotating x-axix labels. Default is 45}
+\item{pvalue.cutoff}{a cutoff for both unadjusted and adjusted p-value to mark significantly enriched classes. Default is 0.05}
+
+\item{angle}{angle of rotating x-axis labels. Default is 45}
 
 \item{...}{other arguments}
 }
@@ -53,7 +56,6 @@ x <- cancers_drug_groups$score
 custom.set <- cancers_drug_groups$custom.set
 set.seed(123)
 enrich <- enrichment(x, custom.set, permute.n=5)
-
 
 }
 \references{
