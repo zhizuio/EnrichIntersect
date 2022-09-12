@@ -26,9 +26,7 @@ library("EnrichIntersect")
 
 ### Plot enrichment map
 
-Data set `cancers_drug_groups` is a list including a score dataframe with 147 drugs as rows
-and 19 cancer types as columns, and a dataframe with nice pre-defined drug groups (1st column)
-of the 147 drugs (2nd column). 
+An example input data object `cancers_drug_groups` is an R `list` provided in our package, which includes a `data.frame` object with 147 cancer drugs as rows and nine cancer types as columns, and another `data.frame` that groups the 147 drugs (second column) into nine user-defined drug classes (first column). The default setup of `enrichment()` uses the classic K-S test statistic to calculate the normalized enrichment score that quantifies the degree to which the features in a feature set are over-represented at the top or bottom of the entire ranked list of features (e.g. a list of drugs), using as default 100 permutations for the empirical null test statistic. In the visualization, the statistically significantly enriched feature sets are marked with red coloured circles given a pre-specified significance level. The pre-specified significance level will be adjusted automatically if argument `padj.method` is one of `c("holm","hochberg","hommel","bonferroni","BH","BY","fdr","none")`. Users can specify the argument `alpha` for calculating a weighted enrichment score, argument `normalize=FALSE` for using the standard enrichment score rather than the normalized score, argument `permute.n` for the number of permutations of the ranked feature list used for estimating the empirical null test statistic, and the argument `pvalue.cutoff` for marking enriched categories at a specific significance level. See the following code for an example.
 
 ```{r enrichment_map, results="hide", fig.width=7, fig.height=5}
 x <- cancers_drug_groups$score
@@ -40,7 +38,9 @@ enrich <- enrichment(x, custom.set, permute.n = 100)
 
 ### Plot Sankey diagram for intersecting set through an array
 
-Data set `cancers_genes_drugs` is an array with association scores between 56 genes (1st dimension), three cancer types (2nd dimension) and two drugs (3rd dimension). 
+`EnrichIntersect` function `intersectSankey()` creates a Sankey diagram to visualize intersecting sets from an `array` object, in which the first dimension represents intermediate variables, and the second and third dimensions represent multiple levels and multiple tasks, respectively. One intersecting set is a list of intermediate variables associated with a combination of a subset of levels and a subset of tasks, which is not easy to visualize when all possible combinations of the two are many. Our function `intersectSankey()` has adapted `sankeyNetwork()` from R package `networkD3` to create a `D3' `JavaScript' interactive Sankey diagram in order to be suitable for several levels, multiple tasks and many intermediate variables. Besides saving the Sankey diagram as an interactive html file, similarly to `networkD3`, the user can also save the Sankey diagram as a pdf or png file via R package `webshot2`. The argument `out.fig=c(NA,"html","pdf","png")` in the function `intersectSankey()` determines the figure on the user's R graphics device, to be saved either as a html, pdf or png file. 
+
+An example input data object `cancers_genes_drugs` in the package is an `array` with associations between, e.g., 56 genes (first dimension), two cancer types (second dimension) and two drugs (third dimension) provided in our package. The user can adjust the Sankey diagram argument `out.fig` for different output graph types  and use argument `step.names` to indicate the labels of the three kinds of variables in a Sankey diagram, i.e., name of multiple levels, name of intermediate variables, and name of multiple tasks, see the following code for an example.
 
 ```{r sankey_diagram, fig.width=9, fig.height=7}
 data(cancers_genes_drugs, package = "EnrichIntersect")
