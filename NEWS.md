@@ -1,11 +1,11 @@
 # EnrichIntersect 0.3
 
-- Significance level can be adjusted automatically in function `enrichment()`
-- Updated vignette
+- Adjusted significance level for enrichment analysis automatically
+- Updated vignettes
 
 # EnrichIntersect 0.2
 
-- Added vignette
+- Added vignettes
 
 # EnrichIntersect 0.1
 
