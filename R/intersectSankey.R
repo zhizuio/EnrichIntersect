@@ -33,6 +33,9 @@
 #' @export
 intersectSankey <- function(x, out.fig=NULL, color=NULL, step.names=c("Levels","Variables","Tasks"), fontSize=c(20,13,20),...){
   
+  # remove intermediate variables without associations with any tasks or levels
+  x <- x[apply(x!=0, 1, sum)!=0,,]
+  
   # intermediate variables
   inter_var <- dimnames(x)[[1]]
   # multiple sample groups
