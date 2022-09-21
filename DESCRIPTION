@@ -16,8 +16,3 @@ Suggests: knitr
 LazyData: true
 VignetteBuilder: knitr
 NeedsCompilation: no
-Packaged: 2022-09-20 13:05:16 UTC; zhiz
-Author: Zhi Zhao [aut, cre],
-Manuela Zucknick [aut],
-Tero Aittokallio [ctb]
-Maintainer: Zhi Zhao <zhi.zhao@medisin.uio.no>
