@@ -11,8 +11,7 @@ License: MIT + file LICENSE
 Depends: R (>= 4.0)
 Encoding: UTF-8
 RoxygenNote: 7.2.1
-Imports: ggplot2, dplyr, networkD3, jsonlite, htmlwidgets, webshot2,
-stats, methods, grDevices
+Imports: ggplot2, dplyr, networkD3, jsonlite, htmlwidgets, webshot2, stats, methods, grDevices
 Suggests: knitr
 LazyData: true
 VignetteBuilder: knitr
