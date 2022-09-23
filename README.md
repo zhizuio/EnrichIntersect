@@ -13,6 +13,11 @@ or similar methods.
 
 ## Citation
 
+> Zhi Zhao, Manuela Zucknick, Tero Aittokallio (2022).
+> EnrichIntersect: an R package for custom set enrichment analysis and
+> interactive visualization of intersecting sets. Bioinformatics Advances,
+> to appear.
+
 > Zhi Zhao, Shixiong Wang, Manuela Zucknick, Tero Aittokallio (2022).
 > Tissue-specific identification of multi-omics features for pan-cancer
 > drug response prediction. iScience, 25(8): 104767. DOI:
