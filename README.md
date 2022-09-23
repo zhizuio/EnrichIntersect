@@ -2,4 +2,4 @@
 
 # Warning
 
-This repository will not be updated anymore. It is replace by [ocbe-uio/EnrichIntersect](https://github.com/ocbe-uio/EnrichIntersect).
+This repository will not be updated anymore. It is replaced by [ocbe-uio/EnrichIntersect](https://github.com/ocbe-uio/EnrichIntersect).
